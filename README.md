@@ -1,14 +1,4 @@
-Here is a good `README.md` for your UniFind project.
 
-Create a file in your main project folder called:
-
-```text
-README.md
-```
-
-Paste this inside:
-
-```md
 # UniFind - Lost and Found Web App
 
 UniFind is a lost and found web application that helps users report lost items, report found items, view potential matches, submit claims, communicate through messages, and receive notifications. The system also includes an admin dashboard for reviewing claims and managing item verification.
