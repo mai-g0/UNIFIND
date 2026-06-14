@@ -19,9 +19,17 @@ body {
 }
 
 .navbar h2 {
-  color: #2563eb;
-  margin: 0;
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: bold;
+  color:#0F766E;
+  letter-spacing: -0.3px;
 }
+
+.nav-brand:hover {
+  color: #2563eb;
+}
+
 
 .nav-links {
   display: flex;

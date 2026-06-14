@@ -64,7 +64,9 @@ function AppContent() {
   return (
     <div className="app">
       <nav className="navbar">
-        <h2>UniFind</h2>
+        <Link to="/" className="nav-brand">
+         🔍 UniFind
+        </Link>
 
         <div className="nav-links">
           <Link to="/">Home</Link>
