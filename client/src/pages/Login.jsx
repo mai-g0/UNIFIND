@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 function Login() {
   const navigate = useNavigate()
@@ -79,6 +79,9 @@ function Login() {
         />
 
         <button type="submit">Login</button>
+          <p className="auth-switch">
+           Don't have an account? <Link to="/register">Register</Link>
+          </p>
       </form>
     </main>
   )

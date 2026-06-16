@@ -10,6 +10,8 @@ function Messages() {
 
   useEffect(() => {
     fetchMessages()
+    const interval = setInterval(fetchMessages, 3000)
+    return () => clearInterval(interval)
   }, [])
 
   async function fetchMessages() {
@@ -69,7 +71,7 @@ function Messages() {
       }
 
       setReplyText('')
-      setNotice('Reply sent successfully')
+      setNotice('')
       fetchMessages()
     } catch (error) {
       setNotice('Something went wrong. Please try again.')
@@ -90,25 +92,24 @@ function Messages() {
           <div className="empty-state">No messages yet.</div>
         )}
 
-        {messages.map((message) => {
+        {[...new Map(messages.map((message) => {
           const otherUser =
             message.sender?._id === currentUser.id
               ? message.receiver
               : message.sender
-
-          return (
-            <button
-              type="button"
-              className="conversation conversation-button"
-              key={message._id}
-              onClick={() => setSelectedMessage(message)}
-            >
-              <h3>{otherUser?.fullName}</h3>
-              <p>{message.itemName}</p>
-              <span>{message.content}</span>
-            </button>
-          )
-        })}
+          return [`${otherUser?._id}-${message.itemName}`, { message, otherUser }]
+        })).values()].map(({ message, otherUser }) => (
+          <button
+            type="button"
+            className="conversation conversation-button"
+            key={`${otherUser?._id}-${message.itemName}`}
+            onClick={() => setSelectedMessage(message)}
+          >
+            <h3>{otherUser?.fullName}</h3>
+            <p>{message.itemName}</p>
+            <span>{message.content}</span>
+          </button>
+        ))}
       </aside>
 
       <section className="chat-panel">
@@ -135,17 +136,15 @@ function Messages() {
               const sameItem = message.itemName === selectedMessage.itemName
 
               const samePeople =
-                (message.sender?._id === currentUser.id &&
-                  message.receiver?._id === selectedOtherUser?._id) ||
-                (message.receiver?._id === currentUser.id &&
-                  message.sender?._id === selectedOtherUser?._id)
+                (message.sender?._id === currentUser.id ||
+                  message.receiver?._id === currentUser.id)
 
               return sameItem && samePeople
             })
             .map((message) => (
               <div
                 className={
-                  message.sender?._id === currentUser.id
+                  message.sender?._id?.toString() === currentUser.id?.toString()
                     ? 'message sent'
                     : 'message received'
                 }
