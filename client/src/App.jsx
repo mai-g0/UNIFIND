@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Link, useNavigate } from 'react-router-do
 import './App.css'
 
 import Home from './pages/Home'
+import Feed from './pages/Feed'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
@@ -70,6 +71,7 @@ function AppContent() {
 
         <div className="nav-links">
           <Link to="/">Home</Link>
+          <Link to="/feed">Feed</Link>
 
           {user?.role === 'user' && (
             <>
@@ -107,6 +109,7 @@ function AppContent() {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/feed" element={<Feed />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 

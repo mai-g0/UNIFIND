@@ -4,9 +4,10 @@
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f5f7fb;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f0f4ff;
   color: #1f2937;
+  line-height: 1.5;
 }
 
 .navbar {
@@ -37,7 +38,8 @@ body {
 
 .nav-links {
   display: flex;
-  gap: 24px;
+  align-items: center;
+  gap: 4px;
 }
 
 .nav-links a {
@@ -86,18 +88,33 @@ body {
 
 button {
   border: none;
-  padding: 14px 24px;
-  background: white;
-  color: #2563eb;
-  font-size: 16px;
-  font-weight: bold;
+  padding: 11px 20px;
+  background: #2563eb;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
   border-radius: 8px;
   cursor: pointer;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+}
+
+button:hover {
+  background: #1d4ed8;
+  box-shadow: 0 2px 8px rgba(37,99,235,0.3);
+}
+
+button:active {
+  transform: translateY(1px);
 }
 
 button.secondary {
   background: #111827;
   color: white;
+}
+
+button.secondary:hover {
+  background: #1f2937;
 }
 
 .how-it-works {
@@ -357,12 +374,34 @@ button.secondary {
 .item-form select,
 .item-form textarea {
   width: 100%;
-  padding: 13px;
+  padding: 12px 16px;
   margin-bottom: 18px;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 10px;
   font-size: 15px;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f9fafb;
+  color: #1f2937;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.item-form input:focus,
+.item-form select:focus,
+.item-form textarea:focus {
+  border-color: #2563eb;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+
+.item-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
 }
 
 .item-form textarea {
@@ -696,11 +735,21 @@ button.secondary {
 
 .empty-state {
   background: white;
-  padding: 24px;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
-  color: #6b7280;
-  font-weight: 600;
+  padding: 48px 24px;
+  border-radius: 12px;
+  border: 2px dashed #e5e7eb;
+  color: #9ca3af;
+  font-weight: 500;
+  text-align: center;
+  font-size: 15px;
+  letter-spacing: 0.2px;
+}
+
+.empty-state::before {
+  content: '🔍';
+  display: block;
+  font-size: 36px;
+  margin-bottom: 12px;
 }
 
 .claim-box {
@@ -1070,11 +1119,26 @@ notification-card:hover {
 .search-input {
   width: 100%;
   max-width: 520px;
-  padding: 13px;
+  padding: 12px 16px;
   margin-top: 18px;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 10px;
   font-size: 15px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: white;
+  color: #1f2937;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.search-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+
+.search-input::placeholder {
+  color: #9ca3af;
 }
 
 .delete-button {
@@ -1265,4 +1329,179 @@ notification-card:hover {
 
 .auth-switch a:hover {
   text-decoration: underline;
+}
+
+/* ============ LIVE FEED ============ */
+.feed-page {
+  padding: 44px 8%;
+}
+
+.feed-header {
+  margin-bottom: 28px;
+}
+
+.feed-header h1 {
+  font-size: 36px;
+  font-weight: 800;
+  color: #1f2937;
+  margin: 0 0 6px;
+}
+
+.feed-header p {
+  color: #6b7280;
+  font-size: 16px;
+  margin: 0;
+}
+
+.feed-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+  gap: 18px;
+}
+
+.feed-tabs {
+  display: flex;
+  gap: 8px;
+  background: #f3f4f6;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.feed-tab {
+  background: transparent;
+  color: #6b7280;
+  padding: 9px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.15s, color 0.15s;
+}
+
+.feed-tab:hover {
+  background: white;
+  color: #1f2937;
+}
+
+.feed-tab.active {
+  background: white;
+  color: #2563eb;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.feed-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.feed-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.feed-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+
+.feed-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.feed-card-body {
+  padding: 18px;
+}
+
+.feed-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+  gap: 10px;
+}
+
+.feed-card-top h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.feed-card-body p {
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0 0 14px;
+}
+
+.feed-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 14px;
+}
+
+.feed-meta span {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.feed-reporter {
+  font-size: 13px;
+  color: #9ca3af;
+  padding-top: 12px;
+  border-top: 1px solid #f3f4f6;
+}
+
+.feed-reporter strong {
+  color: #2563eb;
+}
+
+@media (max-width: 900px) {
+  .feed-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feed-controls {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.feed-image-placeholder {
+  width: 100%;
+  height: 180px;
+  background: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.message.admin {
+  background: #fef3c7;
+  color: #92400e;
+  align-self: flex-start;
+  border-radius: 4px 14px 14px 14px;
+  border-left: 3px solid #f59e0b;
+}
+
+.admin-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #d97706;
+  margin-bottom: 4px;
 }

@@ -143,15 +143,20 @@ function Messages() {
             })
             .map((message) => (
               <div
-                className={
-                  message.sender?._id?.toString() === currentUser.id?.toString()
-                    ? 'message sent'
-                    : 'message received'
-                }
-                key={message._id}
-              >
-                {message.content}
-              </div>
+  className={
+    message.sender?._id?.toString() === currentUser.id?.toString()
+      ? 'message sent'
+      : message.sender?.role === 'admin'
+      ? 'message admin'
+      : 'message received'
+  }
+  key={message._id}
+>
+  {message.sender?.role === 'admin' && (
+    <span className="admin-label">Admin</span>
+  )}
+  {message.content}
+</div>
             ))}
         </div>
 

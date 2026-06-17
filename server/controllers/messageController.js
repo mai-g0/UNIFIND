@@ -23,11 +23,11 @@ async function createMessage(req, res) {
 async function getMessages(req, res) {
   try {
     const messages = await Message.find({
-      $or: [{ sender: req.user._id }, { receiver: req.user._id }],
-    })
-      .populate('sender', 'fullName email')
-      .populate('receiver', 'fullName email')
-      .sort({ createdAt: 1 })
+  $or: [{ sender: req.user._id }, { receiver: req.user._id }],
+})
+  .populate('sender', 'fullName email role')
+  .populate('receiver', 'fullName email role')
+  .sort({ createdAt: 1 })
 
     res.json(messages)
   } catch (error) {
